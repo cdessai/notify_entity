@@ -2,10 +2,11 @@
 
 
 
+use Drupal\Core\Entity\EntityInterface;
 /**
  * Implements hook_entity_insert().
  */
-function notify_entity_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+function notify_entity_entity_insert(EntityInterface $entity) {
   _notify_entity_trigger_event('insert', $entity);
 }
 
@@ -13,7 +14,7 @@ function notify_entity_entity_insert(Drupal\Core\Entity\EntityInterface $entity)
 /**
  * Implements hook_entity_delete().
  */
-function notify_entity_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+function notify_entity_entity_delete(EntityInterface $entity) {
   _notify_entity_trigger_event('delete', $entity);
 }
 
@@ -21,7 +22,7 @@ function notify_entity_entity_delete(Drupal\Core\Entity\EntityInterface $entity)
 /**
  * Implements hook_entity_update().
  */
-function notify_entity_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+function notify_entity_entity_update(EntityInterface $entity) {
   _notify_entity_trigger_event('update', $entity);
 }
 
@@ -32,7 +33,7 @@ function notify_entity_entity_update(Drupal\Core\Entity\EntityInterface $entity)
  * @param String  $event   A string to represent the event.
  * @param \Drupal\Core\Entity\EntityInterface $entity   The triggering entity.
  */
-function _notify_entity_trigger_event($event, Drupal\Core\Entity\EntityInterface $entity) {
+function _notify_entity_trigger_event($event, EntityInterface $entity) {
   $config = \Drupal::configFactory()->get('notify_entity.settings');
   $key = _notify_entity_make_key($entity->getEntityTypeId(), $entity->bundle());
 

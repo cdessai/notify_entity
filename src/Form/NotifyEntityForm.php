@@ -32,7 +32,7 @@ class NotifyEntityForm extends ConfigFormBase {
 
     $form['#tree'] = TRUE;
 
-    $entities = \Drupal::entityManager()->getAllBundleInfo();
+    $entities = \Drupal::service('entity_type.bundle.info')->getAllBundleInfo();
     foreach ($entities as $entity_type => $bundles) {
       foreach ($bundles as $bundle_type => $bundle_info) {
         $form['settings'][$entity_type][$bundle_type] = $this->formCreateRow(
